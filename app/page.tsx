@@ -19,15 +19,15 @@
   const TEST_VOLTAGE = 10350;
 
   export default function Home() {
-    const [cableType, setCableType] = useState('CV');
-    const [freq, setFreq] = useState(50);
-    const [size, setSize] = useState(60);
+    const [cableType, setCableType] = useState('CVT');
+    const [freq, setFreq] = useState(60);
+    const [size, setSize] = useState(38);
     const [length, setLength] = useState('');
 
     const cap = CAPACITANCE[cableType][size];
     const len = parseFloat(length);
     const ic = (!isNaN(len) && len > 0)
-      ? 2 * Math.PI * freq * (cap * 1e-9) * TEST_VOLTAGE * len
+      ? 3 * 2 * Math.PI * freq * (cap * 1e-9) * TEST_VOLTAGE * len
       : null;
 
     const btn = (active: boolean) =>
@@ -95,7 +95,7 @@
                   value={length}
                   onChange={e => setLength(e.target.value)}
                   placeholder="例：150"
-                  className="w-36 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none text-lg"
+                  className="w-36 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-400 focus:outline-none text-lg text-gray-800"
                 />
                 <span className="text-gray-500">m</span>
               </div>
@@ -105,7 +105,7 @@
           <div className={`rounded-2xl p-8 text-center transition-all ${
             ic !== null ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-200 text-gray-400'
           }`}>
-            <p className="text-sm mb-2 opacity-70">充電電流</p>
+            <p className="text-sm mb-2 opacity-70">充電電流（三相一括）</p>
             {ic !== null ? (
               <>
                 <p className="text-6xl font-bold tracking-tight">{(ic * 1000).toFixed(1)}</p>
@@ -120,9 +120,9 @@
           {ic !== null && (
             <div className="bg-white rounded-2xl shadow p-5 text-sm text-gray-600 space-y-1">
               <p className="font-semibold text-gray-700 mb-2">計算内訳</p>
-              <p className="font-mono">Ic = 2π × f × C × V × L</p>
+              <p className="font-mono">Ic = 3 × 2π × f × C × V × L</p>
               <p className="font-mono text-gray-400">
-                　= 2π × {freq} × {cap}×10⁻⁶/1000 × {TEST_VOLTAGE.toLocaleString()} × {length}
+                　= 3 × 2π × {freq} × {cap}×10⁻⁶/1000 × {TEST_VOLTAGE.toLocaleString()} × {length}
               </p>
               <p className="font-mono font-semibold text-gray-800">
                 　= {(ic * 1000).toFixed(1)} mA
