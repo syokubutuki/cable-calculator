@@ -3,6 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cable-calculator-five.vercel.app"),
+  verification: {
+    google: "ofoMx5OtnknPc6zhkrBc9iHZOWR69gj9HdjcPOf0B0o",
+  },
   title: "高圧ケーブル充電電流計算ツール | 6.6kV竣工検査・耐圧試験対応",
   description:
     "6.6kV系統の高圧ケーブル（CV・CVT）充電電流を自動計算。竣工検査・耐圧試験の試験電流値をケーブル種別・サイズ・亘長から瞬時に算出。電気主任技術者向け無料ツール。登録不要。",
